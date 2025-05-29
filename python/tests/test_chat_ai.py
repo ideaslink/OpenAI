@@ -4,7 +4,8 @@ test for chat ai code
 """
 
 import unittest
-from chat_ai import openai_chat_hub
+from python.chat_ai import openai_chat_hub
+import os
 
 
 class TestChatAI(unittest.TestCase):
@@ -15,6 +16,16 @@ class TestChatAI(unittest.TestCase):
     def __init__(self, *args, **kvargs):
         super().__init__(*args, **kvargs)
         self.chat_obj = openai_chat_hub.ChatCompletionHub()
+
+    def test_check_environment(self):
+        """
+        Check if the environment is set up correctly
+        """
+        azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+        azure_openai_apikey = os.getenv("AZURE_OPENAI_APIKEY")
+        azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+
+        self.assertTrue(azure_openai_apikey is not None and azure_openai_endpoint is not None and azure_openai_deployment is not None and azure_openai_apikey.strip(), "Environment is not set up correctly")
 
     def test_chat_ai_completion(self):
         system_message = "You are a helpful AI assistant"

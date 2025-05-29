@@ -5,9 +5,9 @@ chat hub using openai api
 
 import os
 
-import openai
+#import openai
 from openai import AzureOpenAI
-import shared.var_def as VAR
+import python.shared.var_def as VAR
 
 
 class ChatCompletionHub:
